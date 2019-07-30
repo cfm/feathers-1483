@@ -1,0 +1,15 @@
+<!-- per https://docs.feathersjs.com/api/client/socketio.html#direct-connection -->
+<script src="http://localhost:3030/socket.io/socket.io.js"></script>
+<script>
+    var socket = io('http://localhost:3030');
+    const services = [
+        'counters',
+        ];
+
+for (let service of services) {
+        socket.emit('find', service, {}, (error, data) => {
+            if (error) console.error(error);
+            document.write(`Found all ${service}: `, JSON.stringify(data));
+        });
+}
+</script>
